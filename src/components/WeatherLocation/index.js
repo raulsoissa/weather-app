@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import Location from './Location';
 import WeatherData from './WeatherData';
 import './styles.css';
-import { SUN, WINDY } from '../../constants/weathers';
+import { SUN } from '../../constants/weathers';
+import transformWeather from '../../services/transformWeather';
+import { api_weather } from '../../constants/api_url';
 
-const location = "Buenos Aires,ar";
-const api_key = "adb866c0cb646005a389d2f8e9268761";
-const url_base_weather = "http://api.openweathermap.org/data/2.5/weather"
 
 const data = {
     temperature: 10,
@@ -15,29 +14,27 @@ const data = {
     wind: '10 m/s'
 }
 
-const data2 = {
-    temperature: 20,
-    weatherState: WINDY,
-    humidity: 30,
-    wind: '2    0 m/s'
-}
-
 class WeatherLocation extends Component {
 
     constructor() {
         super();
         this.state = {
-            city: 'Buenos Aires',
+            city: 'Lima',
             data: data,
         }
     }
     
     handleUpdateClick = () => {
-        console.log("updated");
-        this.setState({
-            city: 'Santiago',
-            data: data2,
-        })
+        fetch(api_weather).then( resolve => {
+            return resolve.json();
+        }).then( data => {
+            const newWeather = transformWeather(data);
+            console.log(newWeather);
+            debugger;
+            this.setState({
+                data: newWeather
+            });
+        });
     }
     render() {
         const { city, data } = this.state;
