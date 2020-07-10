@@ -5,7 +5,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <WeatherLocation></WeatherLocation>
+      <WeatherLocation city="Santiago,cl"></WeatherLocation>
     </div>
   );
 }
