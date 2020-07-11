@@ -21,8 +21,6 @@ import { CLOUD, SUN, RAIN, SNOW, THUNDER, DRIZZLE } from '../constants/weathers'
         } else {
             return CLOUD;
         }
-
-        return SUN;
     }
 
     const transformWeather = weather_data => {
