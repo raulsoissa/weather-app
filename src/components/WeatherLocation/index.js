@@ -16,7 +16,6 @@ class WeatherLocation extends Component {
             city,
             data: null,
         }
-        console.log("constructor")
     }
     
     componentDidMount() {
@@ -30,7 +29,6 @@ class WeatherLocation extends Component {
             return resolve.json();
         }).then( data => {
             const newWeather = transformWeather(data);
-            console.log(newWeather);
             // debugger;
             this.setState({
                 data: newWeather
