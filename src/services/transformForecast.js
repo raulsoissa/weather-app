@@ -9,7 +9,7 @@ const transformForecast = data => (
         moment.unix(item.dt).utc().hour() === 18 
     )).map(item => (
         {
-            weekDay: moment.unix(item.dt).format('ddd'),
+            weekDay: moment.unix(item.dt).format('dddd'),
             hour: moment.unix(item.dt).hour(),
             data: transformWeather(item)
         }
