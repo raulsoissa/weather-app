@@ -8,6 +8,7 @@ import { createStore } from 'redux';
 import './App.css';
 import LocationList from './components/LocationList';
 import ForecastExtended from './components/ForecastExtended';
+import { setCity }  from './actions';
 
 const cities = [
   'Cordoba,ar',
@@ -17,6 +18,7 @@ const cities = [
 ]
 
 const store = createStore(() => {}, window.__REDUX_DEVTOOLS_EXTENSION__&& window.__REDUX_DEVTOOLS_EXTENSION__());
+
 
 class App extends Component {
 
@@ -30,8 +32,7 @@ class App extends Component {
       city
     })
     console.log(`handleSelectedLocation ${city}`)
-    const action = { type: 'setCity', value: city };
-    store.dispatch(action);
+    store.dispatch(setCity(city));
   };
   
   render() {
