@@ -22,7 +22,7 @@ class ForecastExtended extends Component {
         this.updateCity(this.props.city);
     }
 
-    componentWillReceiveProps(nextProps) {
+    componentWillReceiveProps(nextProps) { //unsafe 
         if (nextProps.city !== this.props.city) {
             this.setState({ forecastData: null })   
             this.updateCity(nextProps.city);
