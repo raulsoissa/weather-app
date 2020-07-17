@@ -18,12 +18,20 @@ const url_weather = 'http://api.openweathermap.org/data/2.5/weather';
 
 export const setSelectedCity = (payload) => {
 
-    return dispatch => {
+    return (dispatch, getSate) => {
         const url_forecast = `${url}?q=${payload}&appid=${api_key}`;
 
         // activar en el estado un indicador de búsqueda de datos
         dispatch(setCity(payload));
 
+        const state = getSate();
+        const date = state.cities[payload] && state.cities[payload].forecastDataDate;
+
+        const now = new Date();
+        if (date && (now - date) < 1 * 60 * 1000) {
+            return;
+        }
+        
         return fetch(url_forecast).then(
             data => (data.json())
         ).then(
