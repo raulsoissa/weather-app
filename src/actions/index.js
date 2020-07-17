@@ -17,6 +17,7 @@ const url = 'http://api.openweathermap.org/data/2.5/forecast';
 const url_weather = 'http://api.openweathermap.org/data/2.5/weather';
 
 export const setSelectedCity = (payload) => {
+
     return dispatch => {
         const url_forecast = `${url}?q=${payload}&appid=${api_key}`;
 
@@ -30,19 +31,20 @@ export const setSelectedCity = (payload) => {
                 const forecastData = transformForecast(weather_data);
 
                 // modificar el estado con el resultado de la promise (fetch)
-                dispatch(setForecastData({ city: payload, forecastData }))
+                dispatch(setForecastData({ city: payload, forecastData }));
             }
         );
     };
 };
 
 export const setWeather = payload => {
+
     return dispatch => {
         payload.forEach(city => {
 
             dispatch(getWeatherCity(city));
 
-            const api_weather = `${url_weather}?q=${payload}&appid=${api_key}`;
+            const api_weather = `${url_weather}?q=${city}&appid=${api_key}`;
             fetch(api_weather).then( resolve => {
                 return resolve.json();
             }).then( data => {

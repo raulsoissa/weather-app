@@ -3,10 +3,10 @@ import thunk from 'redux-thunk';
 import reducers from '../reducers/';
 
 const initialState = {
-    city: 'Buenos Aires,ar'
+    city: 'Santiago,cl'
 };
 
 //ComposeEnhancer es para la utilización de REDUX DEVTOOLS
-const ComposeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-export const store = createStore(reducers, initialState, ComposeEnhancer(applyMiddleware(thunk)));
+export const store = createStore(reducers, initialState, composeEnhancer(applyMiddleware(thunk)));
